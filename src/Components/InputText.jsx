@@ -22,7 +22,7 @@ const InputText = () => {
         if (!text) return;
 
         try {
-            const { data } = await axios.post("http://localhost:5000/text", { searchText: text });
+            const { data } = await axios.post("http://localhost:5000/text", { searchText: text,email:user?.email });
 
             setConversations((prevConversations) => [
                 ...prevConversations,

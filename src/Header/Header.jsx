@@ -3,20 +3,29 @@ import logo from '../assets/logo.svg'
 import { AuthContext } from '../Provider/AuthProvider';
 import { MdLogout } from 'react-icons/md';
 import LogInModal from '../Modal/LogInModal';
+import { useNavigate } from 'react-router-dom';
+import { IoMdMenu } from 'react-icons/io';
 
 const Header = () => {
-    const { user, logOut } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const { user, logOut, setIsText } = useContext(AuthContext)
     const handleLogOut = () => {
-        logOut().then()
+        logOut().then(() => {
+            setIsText(false)
+            navigate("/")
+        })
     }
 
 
     return (
-        <div className='sticky top-0 z-30'>
+        <div className='sticky  top-0 z-30'>
             <div className='flex justify-between bg-slate-50 items-center py-2 '>
                 <div className='flex items-center gap-5'>
+                    <label htmlFor="my-drawer-2" className="drawer-button lg:hidden">
+                        <IoMdMenu className='text-accent text-3xl' />
+                    </label>
                     <img className='w-14 h-14' src={logo} alt="" />
-                    <h2 className='font-bold text-4xl text-accent'>E c h o G P T</h2>
+                    <h2 className='font-bold lg:text-4xl text-2xl text-accent'>E c h o G P T</h2>
                 </div>
                 {
                     user ? <details className="dropdown mr-10 dropdown-end">
